@@ -1,10 +1,11 @@
-const express = require("exress");
+const express = require("express");
 const path = require("path");
 const md5 = require("md5-nodejs");
 const app = express();
+const PORT = process.env.PORT || 8080;
 
-app.use(epxress.static(path.join(__dirname, 'public')));
-
-app.listen(5000, () => {
-    console.log('app listening at http;//localhost:5000');
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, "/public/index.html"));
 });
+
+app.listen(PORT, () => console.log(`App is hosting at http://localhost:${PORT}`))

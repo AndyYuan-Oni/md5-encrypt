@@ -1,15 +1,25 @@
 {
-  "name": "md5",
+  "name": "md5-encrypt",
   "version": "1.0.0",
-  "description": "",
+  "description": "A small handy tool to encrypt md5",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndyYuan-Oni/md5-encrypt.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndyYuan-Oni/md5-encrypt/issues"
+  },
+  "homepage": "https://github.com/AndyYuan-Oni/md5-encrypt#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "md5-nodejs": "^1.0.3",
+    "path": "^0.12.7"
   }
 }

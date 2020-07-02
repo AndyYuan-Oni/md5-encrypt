@@ -1,4 +1,3 @@
-const md5 = require('md5-nodejs');
 let input1 = document.getElementById('firstSection').textContent();
 console.log(inpout1);
 
