@@ -1,24 +1,26 @@
-let input1 = document.getElementById('firstSection').textContent();
-console.log(inpout1);
+const md5 = require("md5-nodejs");
 
 
 
-function orderKey() {
+export function orderKey(input) {
+    var ordered = {};
     Object.keys(input).sort().forEach(key => {
         ordered[key] = input[key];
     });
     console.log(JSON.stringify(ordered));
+    return ordered;
 }
 
-function combine() {
+export function combine(ordered) {
+    var stringed = '';
     for (k in ordered) {
         stringed = stringed + k + '=' + ordered[k] + '&';
     }
-    stringed = stringed + "key=jR84LUKAGSuiI2OC9ppeoiIlEb6lGeJM";
+    return stringed[0, stringed.length];
 }
 
-function runIt() {
-    md5(stringed).toUpperCase()
+export function runIt(input) {
+    return md5(input).toUpperCase()
 }
 
 
@@ -54,3 +56,5 @@ console.log(stringed);
 
 const hash = md5(stringed).toUpperCase();
 console.log(hash);
+
+module.exports = { orderKey, combine, runIt };
