@@ -1,8 +1,4 @@
-const md5 = require("md5-nodejs");
-
-
-
-export function orderKey(input) {
+function orderKey(input) {
     var ordered = {};
     Object.keys(input).sort().forEach(key => {
         ordered[key] = input[key];
@@ -11,7 +7,7 @@ export function orderKey(input) {
     return ordered;
 }
 
-export function combine(ordered) {
+function combine(ordered) {
     var stringed = '';
     for (k in ordered) {
         stringed = stringed + k + '=' + ordered[k] + '&';
@@ -19,7 +15,7 @@ export function combine(ordered) {
     return stringed[0, stringed.length];
 }
 
-export function runIt(input) {
+function runIt(input) {
     return md5(input).toUpperCase()
 }
 
@@ -56,5 +52,3 @@ console.log(stringed);
 
 const hash = md5(stringed).toUpperCase();
 console.log(hash);
-
-module.exports = { orderKey, combine, runIt };
