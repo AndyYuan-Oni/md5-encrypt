@@ -5,9 +5,10 @@ var clearBtn = document.getElementById('clear');
 var copyBtn = document.getElementById('copy');
 var display = document.getElementById("addon");
 var input1 = '';
+var inputKv = '';
 var input2 = '';
 var output = document.getElementById('output');
-var inMap = new Map();
+var inMap = new Object();
 var order = document.getElementById('Check1');
 var stringed;
 
@@ -30,29 +31,50 @@ clearBtn.addEventListener('click', function() {
 });
 
 generateBtn.addEventListener('click', function() {
+    getInput();
+    runIt(stringed)
+})
+
+copyBtn.addEventListener('click', function() {
+    output.select();
+    document.execCommand('copy');
+})
+
+function getInput() {
     var kid = document.getElementById(`addon`).children;
     for (var j = 0; j < kid.length; j++) {
         var key = kid[j].children[0].value;
         var value = kid[j].children[1].value;
-        inMap.set(key, value);
+        inMap[key] = value;
     }
     input1 = document.getElementById('firstSection').value;
     input2 = document.getElementById('secondSection').value;
-    console.log(order);
-})
-
-
-order.addEventListener('click', function() {
-    console.log("this is " + order.getAttribute('checked'));
     if (order.checked) {
-        order.checked = false;
-    } else {
-        order.checked = true;
+        inMap = orderKey(inMap)
     }
-})
+    inputKv = combine(inMap);
+    stringed = input1 + inputKv + input2;
+    console.log(stringed);
+}
 
-function getInput() {
-    console.log(order);
-    var kid = document.getElementById(`addon`);
-    console.log(kid.children.children)
+function orderKey(input) {
+    var ordered = {};
+    Object.keys(input).sort().forEach(key => {
+        ordered[key] = input[key];
+    });
+    console.log(JSON.stringify(ordered));
+    return ordered
+}
+
+function combine(ordered) {
+    var temp = '';
+    for (k in ordered) {
+        temp = temp + k + '=' + ordered[k] + '&';
+    }
+    return temp.substring(0, temp.length - 1);
+}
+
+function runIt(input) {
+    output.value = md5(input).toUpperCase();
+    console.log(output);
 }
