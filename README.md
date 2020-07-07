@@ -12,4 +12,4 @@ Anyway, tiny practise that's it.
 
 ## Others
 
-You don't need the json fiels to run it. It's totally on client side.
+It's totally on client side.
